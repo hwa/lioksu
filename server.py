@@ -63,6 +63,7 @@ def css(font_name):
 def font(filename):
     bottle.response.set_header("Content-Type", "font/" + filename.split('.')[1])
     bottle.response.set_header("Cache-Control", "public, max-age=2544316")
+    bottle.response.set_header("Access-Control-Allow-Origin", "*")
     return bottle.static_file(filename, root="./subfonts/")
 
 
