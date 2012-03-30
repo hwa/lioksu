@@ -57,6 +57,7 @@ def css(font_name):
     origin_font = font_files[font_name]
     subfont(origin_font, template_font, text, output_path)
     bottle.response.set_header("Content-Type", "text/css")
+    bottle.response.set_header("Cache-Control", "public, max-age=2544316")
     return mk_css_resp(font_name, output_path)
 
 @bottle.route("/css/subfonts/<filename:path>")
