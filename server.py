@@ -2,7 +2,6 @@
 import bottle
 import fontforge
 import os
-import datetime
 
 font_dir = "./subfonts/"
 
@@ -56,17 +55,12 @@ def css(font_name):
     text = ''.join(sorted(list(set(text))))
     output_path = mk_font_path(font_name, text)
     origin_font = font_files[font_name]
-    if not os.path.exists(output_path + ".ttf"):
-        subfont(origin_font, template_font, text, output_path)
+    subfont(origin_font, template_font, text, output_path)
     bottle.response.set_header("Content-Type", "text/css")
     return mk_css_resp(font_name, output_path)
 
 @bottle.route("/css/subfonts/<filename:path>")
 def font(filename):
-    dt = datetime.timedelta(29)
-    now = datetime.datetime.utcnow()
-    one_month_later = (dt + now).strftime("%a, %d %b %Y %H:%M:%S GMT")
-    bottle.response.set_header("Expires", one_month_later)
     bottle.response.set_header("Content-Type", "font/" + filename.split('.')[1])
     bottle.response.set_header("Cache-Control", "public, max-age=2544316")
     bottle.response.set_header("Access-Control-Allow-Origin", "*")
