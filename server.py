@@ -7,7 +7,7 @@ import datetime
 font_dir = "./subfonts/"
 
 template_font = fontforge.open("./li.tpl.ttf")
-HanDingYanTi_font = fontforge.open("./fonts/wt064.ttf")
+HanDingYanTi_font = fontforge.open("./wt064.ttf")
 font_files = {"HanDingYanTi" : HanDingYanTi_font}
 
 def subfont(origin_font, template_font, unicodes, output_path):
